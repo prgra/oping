@@ -1,7 +1,6 @@
 # oping
 
 [![GoDoc](https://godoc.org/github.com/prgra/oping?status.svg)](https://godoc.org/github.com/prgra/oping)
-
 [![Go Report Card](https://goreportcard.com/badge/github.com/prgra/oping)](https://goreportcard.com/report/github.com/prgra/go-oping)
 
 A simple ICMP checker of alive hosts, based on [golang.org/x/net/icmp][net-icmp].
