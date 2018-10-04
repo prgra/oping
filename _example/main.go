@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	p, err := oping.New(oping.Conf{Workers: 2000})
+	p, err := oping.New(oping.Conf{Workers: 10000})
 	if err != nil {
 		panic(err)
 	}
@@ -17,7 +17,7 @@ func main() {
 		for x := 0; x < 255; x++ {
 			go func(x int, y int, wg *sync.WaitGroup, p *oping.Pinger) {
 				wg.Add(1)
-				st, err := p.Ping(fmt.Sprintf("10.128.%d.%d", y, x), 10)
+				st, err := p.Ping(fmt.Sprintf("10.128.%d.%d", y, x), 5)
 				if err != nil {
 					fmt.Println(err)
 				}
