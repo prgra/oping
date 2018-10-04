@@ -3,13 +3,13 @@
 [![GoDoc](https://godoc.org/github.com/prgra/oping?status.svg)](https://godoc.org/github.com/prgra/oping)
 [![Go Report Card](https://goreportcard.com/badge/github.com/prgra/oping)](https://goreportcard.com/report/github.com/prgra/go-oping)
 
-A simple ICMP checker of alive hosts, based on [golang.org/x/net/icmp][net-icmp].
+A simple ICMP checker of alive hosts, based on [net-icmp](https://golang.org/x/net/icmp)
 
-
+Main feature - one listener for all incomming packets.
 
 example: 
 
-```
+```go
 package main
 
 import (
@@ -29,7 +29,7 @@ func main() {
 		for x := 0; x < 255; x++ {
 			go func(x int, y int, wg *sync.WaitGroup, p *oping.Pinger) {
 				wg.Add(1)
-				st, err := p.Ping(fmt.Sprintf("10.128.%d.%d", y, x), 10)
+				st, err := p.Ping(fmt.Sprintf("10.128.%d.%d", y, x), 5)
 				if err != nil {
 					fmt.Println(err)
 				}
@@ -52,4 +52,11 @@ func main() {
 
 }
 
+```
+
+10000 workets, ping 5 packets
+launch on MacBook Pro mid 2012
+```shell
+# go build && time sudo ./_example > alive
+sudo ./_example > alive  24.90s user 23.21s system 48% cpu 1:39.61 total
 ```
